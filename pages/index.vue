@@ -2,7 +2,7 @@
   <div class="page home">
     <img
       class="feature"
-      src="~/assets/img/nk-blob-3.png"
+      src="~/assets/img/nk-blob4.png"
       alt="Katianne and Noah during the proposal"
       height="200"
     />
@@ -19,6 +19,9 @@
       6558 Hermosa Avenue<br />
       Rancho Cucamonga, CA 91737
     </address>
+    <p class="details notice">
+      While we are optmistic to have a weddding unaffected by coranavirus, we would be foolish not to have a backup plan. We will be making a formal decision on <strong>August 1</strong> and any changes to the event will be posted here.
+    </p>
   </div>
 </template>
 
@@ -46,7 +49,6 @@ export default {
 
 .details,
 address {
-  margin-bottom: 3rem;
   font-size: 2rem;
   text-align: center;
   font-weight: lighter;
@@ -55,10 +57,14 @@ address {
   border-radius: 40px;
   padding: 2rem;
   max-width: 80%;
-  margin: 0 auto 3rem;
+  margin: 0 auto 1rem;
 }
 
 address {
   font-size: 1.75rem;
+}
+
+.notice {
+  font-size: 1.25rem;
 }
 </style>

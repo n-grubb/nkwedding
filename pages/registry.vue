@@ -1,7 +1,7 @@
 <template>
   <div class="page registry">
     <h1>Registry</h1>
-    <p class="coming-soon">Coming soon!</p>
+    <p class="coming-soon">Stay tuned! Details soon.</p>
   </div>
 </template>
 

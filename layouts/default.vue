@@ -142,8 +142,10 @@ img {
 }
 
 .coming-soon {
+  margin-top: 3rem;
   text-align: center;
   font-size: 1.25rem;
+  transform: rotate(-5deg);
 }
 
 footer {
