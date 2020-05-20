@@ -19,7 +19,7 @@
       Rancho Cucamonga, CA 91737
     </address>
     <p class="details notice">
-      Please know that we are carefully monitoring the coronavirus situation. Any changes made to our ceremony will be posted by <strong>August 1</strong>.
+      Please know that we are carefully monitoring the coronavirus situation. Any changes made to our ceremony will be posted by August 1.
     </p>
   </div>
 </template>
@@ -58,6 +58,10 @@ address {
   max-width: 80%;
   max-width: 100%;
   margin: 0 auto 1rem;
+
+  @media screen and (max-width: 768px) {
+    font-weight: normal;
+  }
 }
 
 .details {
