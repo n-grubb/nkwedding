@@ -39,9 +39,10 @@ export default {
 .feature {
   // border: 2px solid black;
   max-width: 800px;
-  border-radius: 11%;
+  max-height: 600px;
+  border-radius: 10%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     max-width: 100%;
   }
 }
@@ -59,13 +60,15 @@ address {
   max-width: 100%;
   margin: 0 auto 1rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-weight: normal;
   }
 }
 
 .details {
-  @media screen and (max-width: 768px) {
+  max-width: 500px;
+
+  @media screen and (max-width: 767px) {
     font-size: 1.65rem;
   }
 }
@@ -73,7 +76,7 @@ address {
 address {
   font-size: 1.75rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-size: 1.25rem;
   }
 }
@@ -81,7 +84,7 @@ address {
 .notice {
   font-size: 1.25rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-size: 1rem;
   }
 }

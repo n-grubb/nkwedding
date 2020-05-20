@@ -110,13 +110,15 @@ img {
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     padding: 5rem 0rem;
   }
 }
 
 .wedding-details {
   color: #f7f0eb;
+  max-width: 90%;
+  margin: auto;
 
   p {
     display: block;
@@ -134,7 +136,9 @@ img {
       1px 1px 0 #000;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
+    max-width: 100%;
+
     p {
       font-size: 2rem;
     }

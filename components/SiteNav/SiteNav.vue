@@ -9,7 +9,7 @@
 
 <style lang="scss">
   .site-nav {
-    margin: 2em 0;
+    margin: 2rem 0 1rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
