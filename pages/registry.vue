@@ -1,0 +1,11 @@
+<template>
+  <div class="page registry">
+    <h1>Registry</h1>
+    <p class="coming-soon">Coming soon!</p>
+  </div>
+</template>
+
+<script>
+export default {
+}
+</script>
