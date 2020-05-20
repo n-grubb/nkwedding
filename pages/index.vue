@@ -2,7 +2,7 @@
   <div class="page home">
     <img
       class="feature"
-      src="~/assets/img/nk.jpg"
+      src="~/assets/img/nk-wgraphic.jpg"
       alt="Katianne and Noah during the proposal"
       height="200"
     />
@@ -12,7 +12,6 @@
     </h1>
     <p class="details">
       Saturday, October 24th<br />
-      4:00 pm - 9:00 pm<br />
     </p>
     <address>
       Hidden Oaks Retreat Center<br />
@@ -20,7 +19,7 @@
       Rancho Cucamonga, CA 91737
     </address>
     <p class="details notice">
-      While we are optmistic to have a weddding unaffected by coranavirus, we would be foolish not to have a backup plan. We will be making a formal decision on <strong>August 1</strong> and any changes to the event will be posted here.
+      While we are optmistic to have a wedding unaffected by coranavirus, we would be foolish not to have a backup plan. We will be making a formal decision on <strong>August 1</strong> and any changes to the event will be posted here.
     </p>
   </div>
 </template>
