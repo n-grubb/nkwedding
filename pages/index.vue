@@ -2,7 +2,7 @@
   <div class="page home">
     <img
       class="feature"
-      src="~/assets/img/nk-blob4.png"
+      src="~/assets/img/nk.jpg"
       alt="Katianne and Noah during the proposal"
       height="200"
     />
