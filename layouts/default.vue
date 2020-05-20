@@ -138,6 +138,10 @@ img {
     p {
       font-size: 2rem;
     }
+
+    .location {
+      font-size: 1.75rem;
+    }
   }
 }
 

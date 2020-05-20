@@ -62,7 +62,7 @@ address {
 
 .details {
   @media screen and (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
 }
 
@@ -76,5 +76,9 @@ address {
 
 .notice {
   font-size: 1.25rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
 }
 </style>
