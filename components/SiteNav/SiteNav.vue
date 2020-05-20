@@ -17,6 +17,12 @@
     width: 100%;
     max-width: 600px;
 
+    @media screen and (max-width: 768px) {
+      background-color: rgba(249, 232, 218, 0.58);
+      border-radius: 5px;
+      padding: .5rem 0;
+    }
+
     a {
       font-size: 1.5rem;
       color: black;
@@ -24,13 +30,17 @@
       font-size: 1.5rem;
       font-weight: normal;
 
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+
       &:active,
       &:visited {
         color: black;
       }
 
       &:hover {
-        color: $dark-green;
+        color: #E6B0A2;
       }
     }
   }

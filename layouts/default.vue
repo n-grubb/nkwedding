@@ -9,7 +9,7 @@
       />
       <div class="wedding-details">
         <p class="date">October 24, 2020</p>
-        <p class="location">Rancho Cucamonga</p>
+        <p class="location">Rancho Cucamonga, CA</p>
       </div>
       <SiteNav />
       <nuxt />
@@ -109,6 +109,10 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    padding: 5rem 0rem;
+  }
 }
 
 .wedding-details {

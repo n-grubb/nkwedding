@@ -19,7 +19,7 @@
       Rancho Cucamonga, CA 91737
     </address>
     <p class="details notice">
-      While we are optmistic to have a wedding unaffected by coranavirus, we would be foolish not to have a backup plan. We will be making a formal decision on <strong>August 1</strong> and any changes to the event will be posted here.
+      Please know that we are carefully monitoring the coronavirus situation. Any changes made to our ceremony will be posted by <strong>August 1</strong>.
     </p>
   </div>
 </template>
@@ -56,11 +56,22 @@ address {
   border-radius: 40px;
   padding: 2rem;
   max-width: 80%;
+  max-width: 100%;
   margin: 0 auto 1rem;
+}
+
+.details {
+  @media screen and (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 }
 
 address {
   font-size: 1.75rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 }
 
 .notice {
