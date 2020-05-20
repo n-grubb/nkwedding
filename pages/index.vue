@@ -25,8 +25,12 @@
 </template>
 
 <script>
-
 export default {
+  head () {
+    return {
+      title: 'Katianne and Noah'
+    }
+  }
 }
 </script>
 
