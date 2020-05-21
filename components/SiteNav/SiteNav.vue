@@ -18,7 +18,7 @@
     max-width: 600px;
 
     @media screen and (max-width: 768px) {
-      background-color: rgba(249, 232, 218, 0.58);
+      background-color: rgba(249, 232, 218, 0.7);
       border-radius: 5px;
       padding: .5rem 0;
     }

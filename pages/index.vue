@@ -48,6 +48,7 @@ export default {
 
   @media screen and (max-width: 767px) {
     max-width: 100%;
+    padding: 0 .5rem;
   }
 }
 
@@ -57,7 +58,7 @@ address {
   text-align: center;
   font-weight: lighter;
   font-family: $sans-serif;
-  background-color: rgba(249, 232, 218, 0.58);
+  background-color: rgba(249, 232, 218, 0.7);
   border-radius: 40px;
   padding: 2rem;
   max-width: 80%;

@@ -110,7 +110,7 @@ img {
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     padding: 5rem 0rem;
   }
 }
@@ -151,6 +151,7 @@ img {
 
 .page {
   min-height: 250px;
+  padding-bottom: 3rem;
 }
 
 .coming-soon {
@@ -158,6 +159,9 @@ img {
   text-align: center;
   font-size: 1.25rem;
   transform: rotate(-5deg);
+  background-color: rgba(249, 232, 218, 0.7);
+  padding: .5rem;
+  border-radius: .25rem;
 }
 
 footer {
