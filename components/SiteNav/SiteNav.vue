@@ -3,7 +3,6 @@
     <nuxt-link to="/">Details</nuxt-link>
     <nuxt-link to="/travel-guide">Travel Guide</nuxt-link>
     <nuxt-link to="/registry">Registry</nuxt-link>
-    <nuxt-link to="/rsvp">RSVP</nuxt-link>
   </nav>
 </template>
 

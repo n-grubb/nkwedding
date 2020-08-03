@@ -8,22 +8,11 @@
         alt="Katianne and Noah"
       />
       <div class="wedding-details">
-        <p class="date">October 24, 2020</p>
+        <p class="date">New Date: October 2, 2021</p>
         <p class="location">Rancho Cucamonga, CA</p>
       </div>
       <SiteNav />
       <nuxt />
-      <!--
-      <footer>
-        <img
-          class="caligraphy mini"
-          src="~/assets/img/KatianneAndNoah.png"
-          width="200"
-          alt="Katianne and Noah"
-        />
-        <SiteNav />
-      </footer>
-      -->
     </div>
     <Dots class="visual-elements" />
     <Spots class="visual-elements" />
