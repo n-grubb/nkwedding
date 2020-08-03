@@ -7,11 +7,11 @@
       height="200"
     />
     <h1>
-      The Wedding of <br />
+      The Wedding Celebration of <br />
       Katianne Engle & Noah Grubb
     </h1>
     <p class="details">
-      Saturday, October 24th<br />
+      October 2, 2021<br />
     </p>
     <address>
       Hidden Oaks Retreat Center<br />
@@ -19,7 +19,11 @@
       Rancho Cucamonga, CA 91737
     </address>
     <p class="details notice">
-      Please know that we are carefully monitoring the coronavirus situation. Any changes made to our ceremony will be posted by August 1.
+      We want to celebrate our marriage with ALL of our closest friends and family. In order to do this safely and responsibly, we have decided to postpone the wedding celebration until October 2nd, 2021.
+      <br /><br />
+      While we may have postponed the celebration, we will still be getting married this September with a small ceremony amongst our immediate families. If you would like, we welcome wedding gifts now as we prepare for our first home together.
+      <br /><br />
+      Keep an eye out for a formal "Change the Date" in the mail. We can't wait to celebrate with all of you in 2021!
     </p>
   </div>
 </template>
