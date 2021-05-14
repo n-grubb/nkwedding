@@ -8,7 +8,7 @@
     />
     <h1>
       The Wedding Celebration of <br />
-      Katianne Engle & Noah Grubb
+      Katianne Engle &amp; Noah Grubb
     </h1>
     <p class="details">
       October 2, 2021<br />
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  head () {
+  head() {
     return {
       title: 'Katianne and Noah'
     }
@@ -45,10 +45,12 @@ export default {
 }
 
 .feature {
-  // border: 2px solid black;
+  min-width: 320px;
+  min-height: 372px;
   max-width: 800px;
   max-height: 600px;
   border-radius: 10%;
+  animation: 2s appear;
 
   @media screen and (max-width: 767px) {
     max-width: 100%;

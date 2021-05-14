@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  head () {
+  head() {
     return {
       title: 'Katianne and Noah | Travel Guide'
     }

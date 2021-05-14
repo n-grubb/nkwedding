@@ -17,6 +17,7 @@
     max-width: 600px;
 
     @media screen and (max-width: 768px) {
+      /* improve contrast on smaller screens with a opaque bg */
       background-color: rgba(249, 232, 218, 0.7);
       border-radius: 5px;
       padding: .5rem 0;
@@ -39,7 +40,7 @@
       }
 
       &:hover {
-        color: #E6B0A2;
+        color: $pink;
       }
     }
   }
