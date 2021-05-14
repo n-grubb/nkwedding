@@ -2,7 +2,7 @@
 
 > Wedding website for Noah &amp; Katianne
 
-## Build Setup
+## Instructions
 
 ```bash
 # install dependencies
@@ -18,5 +18,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

@@ -1,6 +1,5 @@
 
 export default {
-  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -21,15 +20,6 @@ export default {
   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
-  /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
@@ -39,20 +29,5 @@ export default {
     scss: [
       '@/assets/css/variables.scss',
     ]
-  },
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-  ],
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
   }
 }

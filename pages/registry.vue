@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  head () {
+  head() {
     return {
       title: 'Katianne and Noah | Registry'
     }
@@ -38,7 +38,7 @@ export default {
     margin: 0 1rem;
     border-radius: .25rem;
   }
-  
+
 
   ul {
     color: #E6B0A2;

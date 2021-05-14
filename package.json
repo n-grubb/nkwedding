@@ -1,7 +1,7 @@
 {
   "name": "nkwedding",
   "version": "1.0.0",
-  "description": "Wedding website for Noah &amp; Katianne",
+  "description": "The wedding website of Noah Grubb &amp; Katianne Engle",
   "author": "noahgrubb",
   "private": true,
   "scripts": {
@@ -14,7 +14,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^10.1.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.10.0",

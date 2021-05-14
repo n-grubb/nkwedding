@@ -18,51 +18,59 @@
   </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style lang="scss">
-.spots-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.spots {
-  position: absolute;
-
-  @media screen and (max-width: 768px) {
-    display: none;
+  .spots-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
   }
 
-  &-1 {
-    top: -5%;
-    right: 20%;
+  .spots {
+    position: absolute;
+    animation: 1s linear 1s infinite alternate soft-motion;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+
+    &-1 {
+      top: -5%;
+      right: 20%;
+    }
+
+    &-2 {
+      top: 30%;
+      left: 15%;
+    }
+
+    &-3 {
+      top: 55%;
+      right: 18%;
+      animation: 2s linear 1s infinite alternate-reverse soft-motion;
+    }
+
+    &-4 {
+      top: 82%;
+      left: 5%;
+      animation: 1.5s linear 1s infinite alternate-reverse soft-motion;
+    }
+
+    &-5 {
+      top: 90%;
+      left: 90%;
+    }
   }
 
-  &-2 {
-    top: 30%;
-    left: 15%;
+  @keyframes soft-motion {
+    0% {
+      transform:
+        translateX(.1rem)
+        translateY(.1rem);
+    }
+    100% {
+      transform: translateX(-.1rem);
+    }
   }
-
-  &-3 {
-    top: 55%;
-    right: 18%;
-  }
-
-  &-4 {
-    top: 82%;
-    left: 5%;
-  }
-
-  &-5 {
-    top: 90%;
-    left: 90%;
-  }
-}
 </style>
