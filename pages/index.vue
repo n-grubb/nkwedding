@@ -18,7 +18,7 @@
       Upland, CA 91784
     </address>
     <p class="details notice">
-      Although we technically got married last year, we were unable to celebrate with all of our friends and extended family. We are thrilled to finally celebrate with you at our long-lost wedding!
+      Although we got married last year, we were unable to celebrate with all of our friends and extended family. We are thrilled to finally invite you to our long overdue wedding celebration!
     </p>
   </div>
 </template>
