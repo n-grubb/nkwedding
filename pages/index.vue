@@ -2,8 +2,8 @@
   <div class="page home">
     <img
       class="feature"
-      src="~/assets/img/nk-wgraphic.jpg"
-      alt="Katianne and Noah during the proposal"
+      src="~/assets/img/engagement-photo.jpg"
+      alt="An engagement photo of Katianne and Noah"
       height="200"
     />
     <h1>
@@ -14,16 +14,11 @@
       October 2, 2021<br />
     </p>
     <address>
-      Hidden Oaks Retreat Center<br />
-      6558 Hermosa Avenue<br />
-      Rancho Cucamonga, CA 91737
+      1450 Newman St.<br />
+      Upland, CA 91784
     </address>
     <p class="details notice">
-      We want to celebrate our marriage with ALL of our closest friends and family. In order to do this safely and responsibly, we have decided to postpone the wedding celebration until October 2nd, 2021.
-      <br /><br />
-      While we may have postponed the celebration, we will still be getting married this September with a small ceremony amongst our immediate families. If you would like, we welcome wedding gifts now as we prepare for our first home together.
-      <br /><br />
-      Keep an eye out for a formal "Change the Date" in the mail. We can't wait to celebrate with all of you in 2021!
+      Although we technically got married last year, we were unable to celebrate with all of our friends and extended family. We are thrilled to finally celebrate with you at our long-lost wedding!
     </p>
   </div>
 </template>
@@ -49,7 +44,7 @@ export default {
   min-height: 372px;
   max-width: 800px;
   max-height: 600px;
-  border-radius: 10%;
+  border-radius: 2%;
   animation: 2s appear;
 
   @media screen and (max-width: 767px) {

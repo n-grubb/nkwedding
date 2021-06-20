@@ -1,13 +1,13 @@
 <template>
   <div class="florals-container">
     <figure class="floral floral-1">
-      <img src="~/assets/img/florals/floral_1.png" width="200" />
+      <img src="~/assets/img/florals/floral_1.png" width="200" alt="Decorative floral branch" />
     </figure>
     <figure class="floral floral-2">
-      <img src="~/assets/img/florals/right-branch.png" width="300" />
+      <img src="~/assets/img/florals/right-branch.png" width="300" alt="Decorative floral branch" />
     </figure>
     <figure class="floral floral-3">
-      <img src="~/assets/img/florals/left-branch.png" width="300" />
+      <img src="~/assets/img/florals/left-branch.png" width="300" alt="Decorative floral branch" />
     </figure>
   </div>
 </template>

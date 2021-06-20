@@ -1,19 +1,19 @@
 <template>
   <div class="spots-container">
     <figure class="spots spots-1">
-      <img src="~/assets/img/ink/ink_1.png" width="50" />
+      <img src="~/assets/img/ink/ink_1.png" width="50" alt="Decorative ink spots" />
     </figure>
     <figure class="spots spots-2">
-      <img src="~/assets/img/ink/ink_2.png" width="50" />
+      <img src="~/assets/img/ink/ink_2.png" width="50" alt="Decorative ink spots" />
     </figure>
     <figure class="spots spots-3">
-      <img src="~/assets/img/ink/ink_3.png" width="50" />
+      <img src="~/assets/img/ink/ink_3.png" width="50" alt="Decorative ink spots" />
     </figure>
     <figure class="spots spots-4">
-      <img src="~/assets/img/ink/ink_4.png" width="50" />
+      <img src="~/assets/img/ink/ink_4.png" width="50" alt="Decorative ink spots" />
     </figure>
     <figure class="spots spots-5">
-      <img src="~/assets/img/ink/ink_5.png" width="50" />
+      <img src="~/assets/img/ink/ink_5.png" width="50" alt="Decorative ink spots" />
     </figure>
   </div>
 </template>
