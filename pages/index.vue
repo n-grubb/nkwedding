@@ -43,7 +43,7 @@ export default {
   min-width: 320px;
   min-height: 372px;
   max-width: 800px;
-  max-height: 600px;
+  max-height: 640px;
   border-radius: 2%;
   animation: 2s appear;
 
