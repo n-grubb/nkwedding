@@ -2,6 +2,12 @@
   <div class="page registry">
     <h1>Registry</h1>
     <div class="page-content">
+      <p>If you would like to give us a gift that is too big to put in a suitcase, please send the gift to the following address:</p>
+      <address>
+        Noah &amp; Katianne Grubb<br />
+        267 W High St.<br />
+        Hummelstown, PA 17036
+      </address>
       <p>We are registered at the following stores:</p>
       <ul>
         <li>
@@ -14,6 +20,7 @@
           <a href="https://bit.ly/3eSmyxn" target="_blank" title="Target Registry">Target</a>
         </li>
       </ul>
+      <p>We also welcome gifts through Venmo: <strong>@n_grubb</strong> or <strong>@Katianne-Engle-1</strong>.</p>
     </div>
   </div>
 </template>
@@ -33,17 +40,18 @@ export default {
   font-size: 1.25em;
 
   .page-content {
+    max-width: 40rem;
     background-color: rgba(249, 232, 218, 0.7);
     padding: 1rem;
     margin: 0 1rem;
     border-radius: .25rem;
   }
 
-
   ul {
     color: #E6B0A2;
     font-weight: bold;
     padding-left: 1.5rem;
+    margin-bottom: 2rem;
 
     li {
       margin-top: 1rem;
@@ -56,6 +64,11 @@ export default {
         color: #E6B0A2;
       }
     }
+  }
+
+  address {
+    font-size: 1.25rem;
+    background: none;
   }
 }
 </style>

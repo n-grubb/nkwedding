@@ -24,8 +24,8 @@ export default {
         alt="Katianne and Noah"
       />
       <div class="wedding-details">
-        <p class="date">New Date: October 2, 2021</p>
-        <p class="location">Rancho Cucamonga, CA</p>
+        <p class="date">October 2, 2021</p>
+        <p class="location">Upland, CA</p>
       </div>
       <SiteNav />
       <nuxt />
@@ -37,7 +37,7 @@ export default {
 </template>
 
 <style lang="scss">
-  /* dead simple browser reset */
+  /* simple browser reset */
   *,
   *:before,
   *:after {
