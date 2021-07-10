@@ -150,6 +150,14 @@ export default {
     padding-bottom: 3rem;
   }
 
+  .page-content {
+    max-width: 40rem;
+    background-color: rgba(249, 232, 218, 0.7);
+    padding: 1rem;
+    margin: 0 1rem;
+    border-radius: .25rem;
+  }
+
   h1 {
     margin: 2rem 0;
     color: $slightly-peach;

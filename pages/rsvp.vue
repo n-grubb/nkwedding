@@ -2,31 +2,50 @@
   <div class="page rsvp">
     <h1>RSVP</h1>
     <div class="page-content">
-
-      <form name="contact" method="POST" data-netlify="true">
-        <div class="field">
-          <label for="guest-guest">Name:</label>
-          <input type="text" name="guest-name" id="guest-name" value="" placeholder="The _____ family" />
-        </div>
-
-        <div class="field">
-          <label for="num-of-guests">Number in Party:</label>
-          <input type="number" name="num-of-guests" id="num-of-guests" increment="1" min="1" max="8" value="1" />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-
+      <div class="instructions">
+        <p>Please enter your full name to find your invitation.</p>
+        <p class="subtext">
+          If you are also responding for a guest or family members, you will be able to RSVP for your entire group.
+        </p>
+      </div>
+      <RSVPForm />
     </div>
   </div>
 </template>
 
 <script>
+import RSVPForm from '~/components/RSVPForm/RSVPForm.vue'
+
 export default {
   head() {
     return {
       title: 'Katianne and Noah | RSVP'
     }
+  },
+  components: {
+    RSVPForm
   }
 }
 </script>
+
+<style lang="scss">
+.rsvp {
+  .page-content {
+    background-color: rgba(249, 232, 218, 0.7);
+  }
+
+  .instructions {
+    padding: 2rem 1rem;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .subtext {
+    margin-top: .5rem;
+    font-size: 1rem;
+  }
+}
+</style>

@@ -39,14 +39,6 @@ export default {
 .registry {
   font-size: 1.25em;
 
-  .page-content {
-    max-width: 40rem;
-    background-color: rgba(249, 232, 218, 0.7);
-    padding: 1rem;
-    margin: 0 1rem;
-    border-radius: .25rem;
-  }
-
   ul {
     color: #E6B0A2;
     font-weight: bold;

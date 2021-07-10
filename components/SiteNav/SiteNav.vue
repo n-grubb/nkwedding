@@ -28,7 +28,7 @@
       color: black;
       text-decoration: none;
       font-size: 1.5rem;
-      font-weight: normal;
+      font-weight: 600;
 
       @media screen and (max-width: 768px) {
         font-size: 1.2rem;
