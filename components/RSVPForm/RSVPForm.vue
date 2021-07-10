@@ -184,8 +184,7 @@ export default {
         formData.append('response', guest.response ? 'Yes' : 'No' )
 
         return fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          method: 'post',
           body: formData
         })
           .then(response => {
