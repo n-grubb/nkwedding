@@ -10,54 +10,76 @@
     <input type="hidden" name="form-name" value="rsvp" />
     <input type="hidden" name="8jkxfg" value="" />
 
-    <div class="field">
-      <label for="guest-name">Full Name:</label>
-      <select
-        v-model="selectedGuest"
-        name="guest-name"
+    <div class="notifications">
+      <div
+        v-if="success"
+        class="notification success"
       >
-        <option
-          v-for="(guest, index) in guestOptions"
-          :key="index"
-          :value="guest"
-        >
-          {{ guest }}
-        </option>
-      </select>
+        <strong>Success:</strong>
+        Thank you for responding! Your response was recorded.
+      </div>
+
+      <div
+        v-if="error"
+        class="notification error"
+      >
+        <strong>Error:</strong>
+        There was an error with your submission. Please check your information and try again.
+      </div>
     </div>
 
-    <fieldset
-      v-if="selectedParty"
-      class="field"
+    <div
+      v-if="!success"
+      class="form-content"
     >
-      <legend>You may RSVP for:</legend>
-      <div
-        v-for="(partyMember, index) in selectedPartyMembers"
-        :key="index"
-        class="guest"
-      >
-        <label for="is-attending">{{ partyMember.name }}</label>
-        <div class="guest-actions">
-          <button
-            type="button"
-            :aria-pressed="partyMember.response"
-            @click="acceptInvitation(partyMember)"
+      <div class="field">
+        <label for="guest-name">Full Name:</label>
+        <select
+          v-model="selectedGuest"
+          name="guest-name"
+        >
+          <option
+            v-for="(guest, index) in guestOptions"
+            :key="index"
+            :value="guest"
           >
-            Accept{{ partyMember.response ? 'ed' : '' }}
-          </button>
-          <button
-            type="button"
-            :aria-pressed="partyMember.response === false"
-            @click="declineInvitation(partyMember)"
-          >
-            Decline{{ partyMember.response === false ? 'd' : '' }}
-          </button>
-        </div>
-        <input type="hidden" name="is-attending" id="is-attending" :value="partyMember.response" />
+            {{ guest }}
+          </option>
+        </select>
       </div>
-    </fieldset>
 
-    <button type="submit">Submit</button>
+      <fieldset
+        v-if="selectedParty"
+        class="field"
+      >
+        <legend>You may RSVP for:</legend>
+        <div
+          v-for="(partyMember, index) in selectedPartyMembers"
+          :key="index"
+          class="guest"
+        >
+          <label for="is-attending">{{ partyMember.name }}</label>
+          <div class="guest-actions">
+            <button
+              type="button"
+              :aria-pressed="partyMember.response"
+              @click="acceptInvitation(partyMember)"
+            >
+              Accept{{ partyMember.response ? 'ed' : '' }}
+            </button>
+            <button
+              type="button"
+              :aria-pressed="partyMember.response === false"
+              @click="declineInvitation(partyMember)"
+            >
+              Decline{{ partyMember.response === false ? 'd' : '' }}
+            </button>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </div>
   </form>
 </template>
 
@@ -68,6 +90,8 @@ import responses from './rsvps.json'
 export default {
   data () {
     return {
+      error: false,
+      success: false,
       selectedGuest: '',
       responses: { ...responses },
       initialResponses: responses
@@ -154,7 +178,7 @@ export default {
       console.log('new responses', newResponses)
 
       const submissions = newResponses.map(guest => {
-        const formData = new FormData();
+        const formData = new FormData(document.querySelector('form.rsvp'));
         formData.append('form-name', 'rsvp')
         formData.append('guest-name', guest.name)
         formData.append('response', guest.response ? 'Yes' : 'No' )
@@ -167,21 +191,21 @@ export default {
           .then(response => {
             console.log(response)
             if (!response.ok) {
-              throw new Error(`${response.status} Error: ${response.message}`)
+              throw new Error(`${response.status} Error: ${response.statusText}`)
             }
-            return response.json()
-          })
-          .then(data => {
-            console.log('Guest:', guest.name)
-            constole.log('Response:', data)
           })
       })
 
       Promise.all(submissions)
         .then(() => {
           console.log('Submissions completed successfully');
+          this.error = false
+          this.success = true
+          this.selectedGuest = ''
+          // update json / db
         })
         .catch(error => {
+          this.error = true
           throw new Error('There was a problem with one or more of your responses.', error)
         });
     },
@@ -208,6 +232,34 @@ form.rsvp {
   background-color: white;
   box-shadow: 0 2px 5px 2px rgba(0,0,0,.15);
   border-radius: 4px;
+}
+
+.notification {
+  padding: .5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px 2px rgba(0,0,0,.15);
+  font-size: .875rem;
+
+  &.success {
+    margin: 3rem 0;
+    border-color: $light-green;
+    background: rgba($light-green, .25);
+
+    strong {
+      color: $light-green;
+    }
+  }
+
+  &.error {
+    border-color: $red;
+    background: rgba($red, .25);
+
+    strong {
+      color: $red;
+    }
+  }
 }
 
 .field {

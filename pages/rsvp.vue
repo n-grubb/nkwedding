@@ -1,7 +1,8 @@
 <template>
   <div class="page rsvp">
     <h1>RSVP</h1>
-    <div class="page-content">
+    <p class="coming-soon">Coming soon...</p>
+    <div style="display:none;" class="page-content">
       <div class="instructions">
         <p>Please enter your full name to find your invitation.</p>
         <p class="subtext">
@@ -9,6 +10,9 @@
         </p>
       </div>
       <RSVPForm />
+      <p class="support">
+        If you have any problems using this form, please call or text Noah at <a href="tel:+17175928617">717-592-8617</a> to RSVP.
+      </p>
     </div>
   </div>
 </template>
@@ -46,6 +50,12 @@ export default {
   .subtext {
     margin-top: .5rem;
     font-size: 1rem;
+  }
+
+  .support {
+    margin-top: .5rem;
+    text-align: right;
+    font-size: .75rem;
   }
 }
 </style>
