@@ -178,14 +178,15 @@ export default {
       console.log('new responses', newResponses)
 
       const submissions = newResponses.map(guest => {
-        const formData = new FormData(document.querySelector('form.rsvp'));
-        formData.append('form-name', 'rsvp')
-        formData.append('guest-name', guest.name)
-        formData.append('response', guest.response ? 'Yes' : 'No' )
+        const formData = new FormData();
+        formData.set('form-name', 'rsvp')
+        formData.set('guest-name', guest.name)
+        formData.set('response', guest.response ? 'Yes' : 'No' )
 
         return fetch('/', {
-          method: 'post',
-          body: formData
+          method: 'POST',
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString()
         })
           .then(response => {
             console.log(response)
