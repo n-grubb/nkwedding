@@ -1,15 +1,132 @@
+<script>
+import { Client } from "@notionhq/client"
+
+export default {
+  data () {
+    return {
+      // component data
+      invitees: [],
+      selectedGuest: null,
+      newResponses: [],
+      error: false,
+      success: false
+    }
+  },
+  computed: {
+    guests() {
+      return this.invitees.map(guest => {
+        return {
+          id: guest.id,
+          name: guest.properties["Name"].title[0].plain_text,
+          family: guest.properties["Family"].number,
+          response: guest.properties["Response"].rich_text[0]?.plain_text
+        }
+      })
+    },
+
+    families() {
+      return new Set(this.guests.map(guest => guest.family))
+    },
+
+    selectedFamily() {
+      return this.selectedGuest ? this.selectedGuest.family : null
+    },
+
+    selectedGuestFamilyMembers() {
+      if (this.selectedFamily) {
+        return this.guests.filter(guest => guest.family === this.selectedFamily)
+      }
+      return []
+    }
+  },
+
+  async fetch() {
+    // Use the client to retrieve a list of invitees
+    try {
+      const notion = new Client({ auth: process.env.NOTION_KEY })
+      const databaseID = process.env.NOTION_DATABASE_ID
+      const response = await notion.databases.query({ database_id: databaseID })
+      this.invitees = response.results
+    } catch (error) {
+      throw new Error('There was an error fetching invitees.', error.body)
+    }
+  },
+
+  methods: {
+    /**
+     * Get the RSVP status for a party member.
+     *
+     * - If they have already responded that they plan on attending, return true.
+     * - If they responded but are not going to be attending, return false.
+     * - Return null if the member has not responded yet.
+     *
+     * @param {object} guest - the name of a guest
+     * @returns {boolean} - rsvp response
+     */
+    getRSVPResponse(guest) {
+      const newResponse = this.newResponses.find(_guest => _guest.id === guest.id)
+      const latestResponse = newResponse ? newResponse.response : guest.response
+      return latestResponse || null
+    },
+
+    /**
+     * Update the guest's response.
+     * This information will be sent to Notion on submit.
+     */
+    respond(guest, response) {
+      // First, check if the guest is already in the list.
+      // We use filter to only run one array method true or false.
+      const filteredResponses = this.newResponses.filter(_guest => _guest.id !== guest.id)
+
+      const arrayToUse = filteredResponses.length < this.newResponses.length
+        ? filteredResponses
+        : this.newResponses
+
+      this.newResponses = [
+        ...arrayToUse,
+        {
+          ...guest,
+          response: response
+        }
+      ]
+    },
+
+    async handleSubmit() {
+      try {
+        await this.newResponses.map(async guest => {
+          const data = {
+            id: guest.id,
+            response: guest.response
+          }
+          const response = await fetch('/api/respond', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          if (!response.ok) {
+            throw new Error(`${response.status} Error: ${response.statusText}`)
+          }
+          // Success
+          console.log('Submissions completed successfully');
+          this.error = false
+          this.success = true
+          this.selectedGuest = ''
+        })
+      } catch(error) {
+        this.error = true
+        throw new Error('There was a problem with one or more of your responses.', error.body)
+      }
+    },
+  }
+}
+</script>
+
 <template>
   <form
     name="rsvp"
     class="rsvp"
-    method="POST"
-    data-netlify="true"
-    data-netlify-honeypot="8jkxfg"
     @submit.prevent="handleSubmit"
   >
-    <input type="hidden" name="form-name" value="rsvp" />
-    <input type="hidden" name="8jkxfg" value="" />
-
     <div class="notifications">
       <div
         v-if="success"
@@ -39,40 +156,40 @@
           name="guest-name"
         >
           <option
-            v-for="(guest, index) in guestOptions"
-            :key="index"
+            v-for="guest in guests"
+            :key="guest.id"
             :value="guest"
           >
-            {{ guest }}
+            {{ guest.name }}
           </option>
         </select>
       </div>
 
       <fieldset
-        v-if="selectedParty"
+        v-if="selectedFamily"
         class="field"
       >
         <legend>You may RSVP for:</legend>
         <div
-          v-for="(partyMember, index) in selectedPartyMembers"
-          :key="index"
+          v-for="familyMember in selectedGuestFamilyMembers"
+          :key="familyMember.id"
           class="guest"
         >
-          <label for="is-attending">{{ partyMember.name }}</label>
+          <label for="is-attending">{{ familyMember.name }}</label>
           <div class="guest-actions">
             <button
               type="button"
-              :aria-pressed="partyMember.response"
-              @click="acceptInvitation(partyMember)"
+              :aria-pressed="getRSVPResponse(familyMember) === 'Yes'"
+              @click="respond(familyMember, 'Yes')"
             >
-              Accept{{ partyMember.response ? 'ed' : '' }}
+              Accept{{ getRSVPResponse(familyMember) === 'Yes' ? 'ed' : '' }}
             </button>
             <button
               type="button"
-              :aria-pressed="partyMember.response === false"
-              @click="declineInvitation(partyMember)"
+              :aria-pressed="getRSVPResponse(familyMember) === 'No'"
+              @click="respond(familyMember, 'No')"
             >
-              Decline{{ partyMember.response === false ? 'd' : '' }}
+              Decline{{ getRSVPResponse(familyMember) === 'No' ? 'd' : '' }}
             </button>
           </div>
         </div>
@@ -82,148 +199,6 @@
     </div>
   </form>
 </template>
-
-<script>
-import guestlist from './guestlist.json'
-import responses from './rsvps.json'
-
-export default {
-  data () {
-    return {
-      error: false,
-      success: false,
-      selectedGuest: '',
-      responses: { ...responses },
-      initialResponses: responses
-    }
-  },
-  computed: {
-    guestParties() {
-      return guestlist.parties
-    },
-
-    guestOptions() {
-      return this.guestParties.flatMap(party => party.members)
-    },
-
-    selectedParty() {
-      return this.selectedGuest
-        ? this.guestParties.find(party => party.members.includes(this.selectedGuest))
-        : null
-    },
-
-    selectedPartyMembers() {
-      return this.selectedParty.members
-        .map(member => {
-          return {
-            name: member,
-            response: this.getRSVPResponse(member)
-          }
-        } )
-    },
-
-    guestsAttending() {
-      return this.responses.attending || []
-    },
-
-    guestsNotAttending() {
-      return this.responses.notAttending || []
-    }
-  },
-  watch: {
-    selectedGuest() {
-      // Reset the responses if a new guest is selected.
-      this.responses = { ...responses }
-    }
-  },
-  methods: {
-    /**
-     * Get the RSVP status for a party member.
-     * If they have already responded that they plan on attending, return true.
-     * If they responded but are not going to be attending, return false.
-     * Return null if the member has not responded yet.
-     * @param {string} guestName - the name of a guest
-     * @returns {boolean} - rsvp response
-     */
-    getRSVPResponse(guestName) {
-      if (this.guestsAttending.includes(guestName)) {
-        return true
-      } else if (this.guestsNotAttending.includes(guestName)) {
-        return false
-      } else {
-        return null
-      }
-    },
-
-    acceptInvitation(guest) {
-      this.findAndRemoveFromList(guest.name, this.responses.notAttending)
-      this.responses.attending = [...this.responses.attending, guest.name]
-    },
-
-    declineInvitation(guest) {
-      this.findAndRemoveFromList(guest.name, this.responses.attending)
-      this.responses.notAttending = [...this.responses.notAttending, guest.name]
-    },
-
-    findAndRemoveFromList(guestName, list) {
-      const responseIndex = list.findIndex(guest => guest === guestName)
-      if (responseIndex > -1) {
-        list.splice(responseIndex, 1)
-      }
-    },
-
-    handleSubmit() {
-      const newResponses = this.getNewResponses()
-
-      console.log('new responses', newResponses)
-
-      const submissions = newResponses.map(guest => {
-        const formData = new FormData();
-        formData.set('form-name', 'rsvp')
-        formData.set('guest-name', guest.name)
-        formData.set('response', guest.response ? 'Yes' : 'No' )
-
-        return fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-          .then(response => {
-            console.log(response)
-            if (!response.ok) {
-              throw new Error(`${response.status} Error: ${response.statusText}`)
-            }
-          })
-      })
-
-      Promise.all(submissions)
-        .then(() => {
-          console.log('Submissions completed successfully');
-          this.error = false
-          this.success = true
-          this.selectedGuest = ''
-          // update json / db
-        })
-        .catch(error => {
-          this.error = true
-          throw new Error('There was a problem with one or more of your responses.', error)
-        });
-    },
-
-    getNewResponses() {
-      console.log('Original responses', this.initialResponses)
-      const newRSVPs = this.guestsAttending
-        .filter(guest => this.initialResponses.attending && !this.initialResponses.attending.includes(guest))
-        .map(guest => ({ name: guest, response: true }))
-      const newNos = this.guestsNotAttending
-        .filter(guest => this.initialResponses.attending && !this.initialResponses?.notAttending.includes(guest))
-        .map(guest => ({ name: guest, response: false }))
-
-      return newRSVPs.concat(newNos)
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 form.rsvp {

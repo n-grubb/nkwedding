@@ -1,5 +1,26 @@
+require('dotenv').config()
 
 export default {
+  /*
+  ** Nuxt.js dev-modules
+  */
+  buildModules: [
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources'
+  ],
+  /*
+  ** Setup environment variables
+  */
+  env: {
+    notionKey: process.env.NOTION_KEY,
+    notionDatabaseID: process.env.NOTION_DATABASE_ID
+  },
+  /*
+  ** Add server middleware to handle Notion API requests
+  */
+  serverMiddleware: [
+    '~/api/respond'
+  ],
   /*
   ** Headers of the page
   */
@@ -19,12 +40,6 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-    '@nuxtjs/style-resources'
-  ],
   styleResources: {
     scss: [
       '@/assets/css/variables.scss',
