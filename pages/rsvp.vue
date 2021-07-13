@@ -1,8 +1,7 @@
 <template>
   <div class="page rsvp">
     <h1>RSVP</h1>
-    <p class="coming-soon">Coming soon...</p>
-    <div style="display:none;" class="page-content">
+    <div class="page-content">
       <div class="instructions">
         <p>Please enter your last name to find your invitation.</p>
         <p class="subtext">

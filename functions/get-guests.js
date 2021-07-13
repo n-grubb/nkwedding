@@ -12,9 +12,11 @@ exports.handler = async function() {
       .map(guest => {
         return {
           id: guest.id,
-          name: guest.properties["Name"] ? guest.properties["Name"].title[0].plain_text : 'unknown',
-          family: guest.properties["Family"]?.number,
-          response: guest.properties["Response"].rich_text[0]?.plain_text
+          name: guest.properties["Name"] ? guest.properties["Name"].title[0].plain_text : 'Unknown',
+          family: guest.properties["Family"] ? guest.properties["Family"].number : 0,
+          response: guest.properties["Response"] && guest.properties["Response"].rich_text[0]
+            ? guest.properties["Response"].rich_text[0].plain_text
+            : null
         }
       })
     console.log('Guests found: ', guests.length)
