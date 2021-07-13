@@ -3,6 +3,7 @@ export default {
   data () {
     return {
       loading: true,
+      saving: false,
       guests: [],
       searchString: '',
       searchResults: [],
@@ -31,7 +32,9 @@ export default {
 
     selectedGuestFamilyMembers() {
       if (this.selectedFamily) {
-        return this.guests.filter(guest => guest.family === this.selectedFamily)
+        return this.guests
+          .filter(guest => guest.family === this.selectedFamily)
+          .sort((a, b) => a.name.localeCompare(b.name) )
       }
       return []
     }
@@ -81,10 +84,14 @@ export default {
         ? filteredResponses
         : this.newResponses
 
+      const guestToUse = filteredResponses.length < this.newResponses.length
+        ? this.newResponses.find(_guest => _guest.id === guest.id)
+        : guest
+
       this.newResponses = [
         ...arrayToUse,
         {
-          ...guest,
+          ...guestToUse,
           response: response
         }
       ]
@@ -125,11 +132,42 @@ export default {
       this.newResponses = []
     },
 
+    updateGuestName(event, guest) {
+      // get new value
+      const { value } = event.target
+
+      // don't update the response if the value does not exist.
+      if (!value) { return }
+
+      // find guest in new responses
+      const responseIndex = this.newResponses.findIndex(_guest => _guest.id === guest.id)
+
+      // update the
+      if (responseIndex !== -1) {
+        this.newResponses[responseIndex] = {
+          ...this.newResponses[responseIndex],
+          name: `${guest.name}: ${value}`
+        }
+      } else {
+        this.newResponses = [
+          ...this.newResponses,
+          {
+            ...guest,
+            name: `${guest.name}: ${value}`
+          }
+        ]
+      }
+    },
+
     async handleSubmit() {
+      this.saving = true
+      this.loading = true
       try {
         this.newResponses.map(async guest => {
+          const ogData = this.guests.find(_g => _g.id === guest.id)
           const data = {
             id: guest.id,
+            name: ogData.name !== guest.name ? guest.name : null,
             response: guest.response
           }
           const response = await fetch('/.netlify/functions/update-guest-response/', {
@@ -149,6 +187,9 @@ export default {
       } catch(error) {
         this.error = true
         throw new Error('There was a problem with one or more of your responses.', error.body)
+      } finally {
+        this.saving = false
+        this.loading = false
       }
     },
   }
@@ -161,7 +202,10 @@ export default {
     class="spinner-container"
   >
     <img class="spinner" src="~/assets/img/spinner.svg" width="48" height="48">
-    <p>Loading guests...<br /> The RSVP form will be ready in a moment.</p>
+    <p v-if="!saving">
+      Loading guests...<br />
+      The RSVP form will be ready in a moment.
+    </p>
   </div>
   <div
     v-else
@@ -251,13 +295,35 @@ export default {
           v-if="selectedFamily"
           class="field"
         >
-          <p class="instructions">You may RSVP for any of the following guests:</p>
+          <p class="instructions">
+            You may RSVP for any of the following guests:
+          </p>
           <div
             v-for="familyMember in selectedGuestFamilyMembers"
             :key="familyMember.id"
             class="guest"
           >
-            <label for="is-attending">{{ familyMember.name }}</label>
+            <div
+              v-if="familyMember.name.includes('Guest') && !familyMember.name.includes(':')"
+              class="field guest-name"
+            >
+              <label for="guest-name">
+                Guest Name
+              </label>
+              <input
+                type="text"
+                id="guest-name"
+                name='guest-name'
+                value=""
+                @keyup="e => updateGuestName(e, familyMember)"
+              />
+            </div>
+            <p v-else>
+              {{ familyMember.name.includes(':')
+                ? familyMember.name.slice(familyMember.name.indexOf(':') + 2)
+                : familyMember.name
+              }}
+            </p>
             <div class="guest-actions">
               <button
                 type="button"
@@ -283,23 +349,6 @@ export default {
           Submit
         </button>
       </form>
-      <!--
-      <select
-        v-model="selectedGuest"
-        name="guest-name"
-        aria-hidden="true"
-        tabindex="-1"
-        class="visually-hidden"
-      >
-        <option
-          v-for="guest in guests"
-          :key="guest.id"
-          :value="guest"
-        >
-          {{ guest.name }}
-        </option>
-      </select>
-      -->
     </div>
   </div>
 </template>
@@ -360,7 +409,7 @@ export default {
     background: rgba($dusty-blue, .25);
 
     strong {
-      color: $dusty-blue;
+      color: $blue;
     }
   }
 
@@ -423,6 +472,7 @@ export default {
 }
 
 button {
+  min-height: 2.5rem;
   padding: .75rem;
   border: none;
   border-radius: 4px;
@@ -464,6 +514,19 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  > .guest-name {
+    max-width: 50%;
+    margin-bottom: 0;
+
+    label {
+      font-size: .875rem;
+    }
+  }
+}
+
+.guest-actions {
+  align-self: flex-end;
 }
 
 .search .guest {
