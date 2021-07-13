@@ -1,11 +1,9 @@
 <script>
-import { Client } from "@notionhq/client"
-
 export default {
   data () {
     return {
-      // component data
-      invitees: [],
+      loading: true,
+      guests: [],
       selectedGuest: null,
       newResponses: [],
       error: false,
@@ -13,17 +11,6 @@ export default {
     }
   },
   computed: {
-    guests() {
-      return this.invitees.map(guest => {
-        return {
-          id: guest.id,
-          name: guest.properties["Name"].title[0].plain_text,
-          family: guest.properties["Family"].number,
-          response: guest.properties["Response"].rich_text[0]?.plain_text
-        }
-      })
-    },
-
     families() {
       return new Set(this.guests.map(guest => guest.family))
     },
@@ -40,15 +27,17 @@ export default {
     }
   },
 
-  async fetch() {
-    // Use the client to retrieve a list of invitees
+  async mounted() {
     try {
-      const notion = new Client({ auth: process.env.NOTION_KEY })
-      const databaseID = process.env.NOTION_DATABASE_ID
-      const response = await notion.databases.query({ database_id: databaseID })
-      this.invitees = response.results
+      const response = await fetch('/.netlify/functions/get-guests/')
+      if (response.ok) {
+        const fetchedGuests = await response.json()
+        this.guests = fetchedGuests
+      }
     } catch (error) {
       throw new Error('There was an error fetching invitees.', error.body)
+    } finally {
+      this.loading = false
     }
   },
 
@@ -93,12 +82,12 @@ export default {
 
     async handleSubmit() {
       try {
-        await this.newResponses.map(async guest => {
+        this.newResponses.map(async guest => {
           const data = {
             id: guest.id,
             response: guest.response
           }
-          const response = await fetch('/api/respond', {
+          const response = await fetch('/.netlify/functions/update-guest-response/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -122,7 +111,13 @@ export default {
 </script>
 
 <template>
+  <div
+    v-if="loading"
+  >
+    Loading...
+  </div>
   <form
+    v-else
     name="rsvp"
     class="rsvp"
     @submit.prevent="handleSubmit"

@@ -4,7 +4,7 @@
     <p class="coming-soon">Coming soon...</p>
     <div style="display:none;" class="page-content">
       <div class="instructions">
-        <p>Please enter your full name to find your invitation.</p>
+        <p>Please enter your last name to find your invitation.</p>
         <p class="subtext">
           If you are also responding for a guest or family members, you will be able to RSVP for your entire group.
         </p>
