@@ -9,6 +9,8 @@
         Hummelstown, PA 17036
       </address>
       <p>We are registered at the following stores:</p>
+      <p class="coming-soon" style="margin-bottom: 4rem;">Coming soon!</p>
+      <!--
       <ul>
         <li>
           <a href="https://bit.ly/3dDrYwe" target="_blank" title="Crate &amp; Barrel Registry">Crate &amp; Barrel</a>
@@ -20,6 +22,7 @@
           <a href="https://bit.ly/3eSmyxn" target="_blank" title="Target Registry">Target</a>
         </li>
       </ul>
+      -->
       <p>We also welcome gifts through Venmo: <strong>@n_grubb</strong> or <strong>@Katianne-Engle-1</strong>.</p>
     </div>
   </div>

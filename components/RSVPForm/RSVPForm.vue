@@ -516,17 +516,34 @@ button {
   align-items: center;
 
   > .guest-name {
+    display: block;
     max-width: 50%;
     margin-bottom: 0;
+
+    @media screen and (max-width: 500px) {
+      max-width: none;
+    }
 
     label {
       font-size: .875rem;
     }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    flex-wrap: wrap;
   }
 }
 
 .guest-actions {
   align-self: flex-end;
+
+  @media screen and (max-width: 500px) {
+    margin-top: .5rem;
+  }
 }
 
 .search .guest {
@@ -565,6 +582,10 @@ button {
       cursor: default;
       box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.15);
     }
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-bottom: .5rem;
   }
 }
 

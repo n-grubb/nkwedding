@@ -34,7 +34,7 @@ export default {
 <style lang="scss">
 .rsvp {
   .page-content {
-    background-color: rgba(249, 232, 218, 0.7);
+    background-color: rgba(249, 232, 218, 0.85);
   }
 
   .instructions {
