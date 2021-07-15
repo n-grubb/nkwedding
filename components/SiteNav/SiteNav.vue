@@ -40,7 +40,7 @@
       }
 
       &:hover {
-        color: $pink;
+        color: $dusty-blue;
       }
     }
   }

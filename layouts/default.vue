@@ -102,7 +102,7 @@ export default {
   }
 
   .wedding-details {
-    color: #f7f0eb;
+    color: #d1e5f6;
     max-width: 90%;
     margin: auto;
 
@@ -115,7 +115,7 @@ export default {
       line-height: 1.2;
       -webkit-text-stroke: 1px black;
       text-shadow:
-        2px 3px 0 #000,
+        1px 4px 0 #000,
         -1px -1px 0 #000,
         1px -1px 0 #000,
         -1px 1px 0 #000,
@@ -160,11 +160,11 @@ export default {
 
   h1 {
     margin: 2rem 0;
-    color: $slightly-peach;
+    color: #d1e5f6;
     font-size: 2.5rem;
     line-height: 1.2;
     -webkit-text-stroke: 1px black;
-    text-shadow: 3px 3px 0 #000;
+    text-shadow: 1px 4px 0 #000;
     text-align: center;
   }
 
