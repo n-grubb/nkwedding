@@ -2,28 +2,33 @@
   <div class="page registry">
     <h1>Registry</h1>
     <div class="page-content">
+      <!-- <p class="coming-soon" style="margin-bottom: 4rem;">Coming soon!</p> -->
+      <p>We are registered at the following stores:</p>
+      <ul>
+        <!-- 
+        <li>
+          <a href="https://bit.ly/3dDrYwe" target="_blank" title="Crate &amp; Barrel Registry">Crate &amp; Barrel</a>
+        </li>
+        <li>
+          <a href="https://bit.ly/372CJ8G" target="_blank" title="West Elm Registry">West Elm</a>
+        </li> 
+        -->
+        <li>
+          <a href="https://bit.ly/3eSmyxn" target="_blank" title="Target Registry">Target</a>
+        </li>
+      </ul>
+
       <p>If you would like to give us a gift that is too big to put in a suitcase, please send the gift to the following address:</p>
       <address>
         Noah &amp; Katianne Grubb<br />
         267 W High St.<br />
         Hummelstown, PA 17036
       </address>
-      <p>We are registered at the following stores:</p>
-      <p class="coming-soon" style="margin-bottom: 4rem;">Coming soon!</p>
-      <!--
-      <ul>
-        <li>
-          <a href="https://bit.ly/3dDrYwe" target="_blank" title="Crate &amp; Barrel Registry">Crate &amp; Barrel</a>
-        </li>
-        <li>
-          <a href="https://bit.ly/372CJ8G" target="_blank" title="West Elm Registry">West Elm</a>
-        </li>
-        <li>
-          <a href="https://bit.ly/3eSmyxn" target="_blank" title="Target Registry">Target</a>
-        </li>
-      </ul>
-      -->
-      <p>We also welcome gifts through Venmo: <strong>@n_grubb</strong> or <strong>@Katianne-Engle-1</strong>.</p>
+      
+      <p>
+        We also welcome gifts through Venmo: <br />
+        <strong>@n_grubb</strong> or <strong>@Katianne-Engle-1</strong>.
+      </p>
     </div>
   </div>
 </template>
