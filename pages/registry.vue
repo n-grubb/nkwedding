@@ -5,14 +5,9 @@
       <!-- <p class="coming-soon" style="margin-bottom: 4rem;">Coming soon!</p> -->
       <p>We are registered at the following stores:</p>
       <ul>
-        <!-- 
         <li>
-          <a href="https://bit.ly/3dDrYwe" target="_blank" title="Crate &amp; Barrel Registry">Crate &amp; Barrel</a>
+          <a href="https://www.crateandbarrel.com/gift-registry/noah-grubb-and-katianne-engle/r6345283" target="_blank" title="Crate &amp; Barrel Registry">Crate &amp; Barrel</a>
         </li>
-        <li>
-          <a href="https://bit.ly/372CJ8G" target="_blank" title="West Elm Registry">West Elm</a>
-        </li> 
-        -->
         <li>
           <a href="https://bit.ly/3eSmyxn" target="_blank" title="Target Registry">Target</a>
         </li>
