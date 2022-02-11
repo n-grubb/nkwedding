@@ -14,7 +14,7 @@
     "@notionhq/client": "^0.2.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "dotenv": "^10.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.9.0",
     "sass-loader": "^10.1.1"
   },
